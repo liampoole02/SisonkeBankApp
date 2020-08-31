@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_horizontal"
+
+    tools:context=".MainPageActivity">
+
+    <TextView
+        android:layout_marginTop="0dp"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:id="@+id/registertextviewlabel"
+        android:text="Welcome User"
+        />
+
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="VIEW ACCOUNT BALANCE"
+        android:id="@+id/mainpageviewbalance"
+        android:background="#383493"/>
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="TRANSFER BETWEEN ACCOUNTS"
+        android:id="@+id/mainpagetransfer"
+        android:background="#383493"/>
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="LOGOUT"
+        android:id="@+id/mainpagelogout"
+        android:background="#383493"/>
+
+</LinearLayout>

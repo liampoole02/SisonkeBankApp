@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:layout_marginTop="0dp"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:id="@+id/registertextviewlabel"
+        android:text="Enter your details below to register"
+        />
+
+    <EditText
+        android:layout_marginTop="0dp"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:id="@+id/registeredittextfirstname"
+        android:hint="First name"/>
+
+    <EditText
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/registeredittextlastname"
+        android:hint="Last Name"/>
+    <EditText
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/registeredittextemail"
+        android:hint="Email"/>
+
+    <EditText
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/registeredittextpassword"
+        android:hint="Password"/>
+
+    <EditText
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/registeredittextmobile"
+        android:hint="Mobile"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginTop="0dp"
+            android:layout_width="79dp"
+            android:layout_height="30dp"
+            android:text="Gender"
+            />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/radio_pirates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton android:id="@+id/radio_ninjas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="CREATE ACCOUNT"
+        android:id="@+id/registerbuttoncreate"
+        android:background="#383493"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/textviewregister"
+            android:text="Already have an account? Login Here"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
