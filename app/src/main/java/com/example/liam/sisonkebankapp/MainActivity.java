@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         loginRegisterLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent registerIntent=new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(registerIntent);
             }
