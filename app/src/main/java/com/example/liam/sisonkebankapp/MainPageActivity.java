@@ -33,5 +33,13 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
+        btnviewbalance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainPageActivity.this, ViewAccountBalanceActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

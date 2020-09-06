@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ViewAccountBalanceActivity">
+
+    <TextView
+        android:layout_marginStart="50dp"
+        android:id="@+id/textviewview"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"
+        android:text="View Account Balance" />
+
+    <TextView
+        android:id="@+id/textviewholdername"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Account Holder Name: " />
+
+    <TextView
+        android:id="@+id/textviewholdersurname"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Account Holder Surname: " />
+
+    <TextView
+        android:id="@+id/textviewholdercurrentbalance"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Current Account Balance: R " />
+
+    <TextView
+        android:id="@+id/textviewsavingsbalance"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Savings Account Balance: R: " />
+
+
+</LinearLayout>
