@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     EditText loginUsername;
@@ -37,8 +38,15 @@ public class MainActivity extends AppCompatActivity {
         loginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerIntent=new Intent(MainActivity.this, MainPageActivity.class);
-                startActivity(registerIntent);
+                String email=loginUsername.getText().toString();
+                String password=loginUsername.getText().toString();
+
+                if(email.equals("")||password.equals("")){
+                    Toast.makeText(getApplicationContext(),"Please fill in all the fields", Toast.LENGTH_LONG).show();
+                }else {
+                    Intent registerIntent = new Intent(MainActivity.this, MainPageActivity.class);
+                    startActivity(registerIntent);
+                }
             }
         });
 

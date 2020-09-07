@@ -41,5 +41,12 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
+        btntransfer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainPageActivity.this, TransferActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
