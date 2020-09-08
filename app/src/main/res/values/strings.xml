@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SisonkeBankApp</string>
+
+    <string-array name="transferoptions">
+        <item>Current to savings</item>
+        <item>Savings to current</item>
+    </string-array>
 </resources>

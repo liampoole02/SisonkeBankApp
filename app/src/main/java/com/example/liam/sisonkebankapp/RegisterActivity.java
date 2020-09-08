@@ -24,6 +24,9 @@ public class RegisterActivity extends AppCompatActivity {
     Button registerbutton;
     DatabaseHelper db;
 
+    double currentaccount;
+    double savingsaccount;
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -39,6 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
         registermobile=findViewById(R.id.registeredittextmobile);
 
         registerbutton=findViewById(R.id.registerbuttoncreate);
+
+          currentaccount=5000;
+          savingsaccount=2000;
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else{
                         Boolean checkEmail=db.checkEmail(email);
                         if(checkEmail==true){
-                            Boolean insert=db.addUser(email,password,name,surname,mobile);
+                            Boolean insert=db.addUser(email,password,name,surname,mobile,currentaccount, savingsaccount);
                             if(insert==true){
                                 Toast.makeText(getApplicationContext(),"You have been registered successfully", Toast.LENGTH_LONG).show();
                                 Intent registerIntent=new Intent(RegisterActivity.this, MainPageActivity.class);
