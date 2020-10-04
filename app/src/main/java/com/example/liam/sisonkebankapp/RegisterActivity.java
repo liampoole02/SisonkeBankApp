@@ -22,7 +22,9 @@ public class RegisterActivity extends AppCompatActivity {
     EditText registermobile;
 
     Button registerbutton;
-    DatabaseHelper db;
+    DatabaseHelper databaseHelper;
+
+    private User user;
 
     double currentaccount;
     double savingsaccount;
@@ -31,7 +33,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        db=new DatabaseHelper(this);
+
+        databaseHelper=new DatabaseHelper(this);
+        user=new User();
 
         registerenterlabel=findViewById(R.id.registertextviewlabel);
 
@@ -60,15 +64,24 @@ public class RegisterActivity extends AppCompatActivity {
                 }if(password.length()<5){
                     Toast.makeText(getApplicationContext(),"Password has to be longer than 5 characters", Toast.LENGTH_LONG).show();
                 }
+
                 else{
-                        Boolean checkEmail=db.checkEmail(email);
+                        Boolean checkEmail=databaseHelper.checkEmail(email);
                         if(checkEmail==true){
-                            Boolean insert=db.addUser(email,password,name,surname,mobile,currentaccount, savingsaccount);
-                            if(insert==true){
+                            user.setUserEmail(email);
+                            user.setUserPassword(password);
+                            user.setUserName(name);
+                            user.setUserSurname(surname);
+                            user.setUserMobile(mobile);
+                            user.setCurrentAccountBal(currentaccount);
+                            user.setSavingsAccountBal(savingsaccount);
+
+                            databaseHelper.addUser(user);
+
                                 Toast.makeText(getApplicationContext(),"You have been registered successfully", Toast.LENGTH_LONG).show();
-                                Intent registerIntent=new Intent(RegisterActivity.this, MainPageActivity.class);
+                                Intent registerIntent=new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(registerIntent);
-                            }
+
                         }else{
                             Toast.makeText(getApplicationContext(),"This email already exists", Toast.LENGTH_LONG).show();
                         }

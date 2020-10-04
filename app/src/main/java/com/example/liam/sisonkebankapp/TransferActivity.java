@@ -1,5 +1,6 @@
 package com.example.liam.sisonkebankapp;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +23,8 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
     Spinner spinner;
 
     Button buttontransfer;
+    DatabaseHelper db;
+    User user;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -47,6 +50,18 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
         spinner.setAdapter(adapter);
 
         buttontransfer=findViewById(R.id.buttontransfer);
+
+        db=new DatabaseHelper(this);
+        user=new User();
+
+        final String emailFromIntent = getIntent().getStringExtra("EMAIL");
+
+        Cursor cursor=db.getUserDetails(emailFromIntent);
+
+        while(cursor.moveToNext()){
+            currentbalance.setText("Current Account Balance: "+cursor.getString(5));
+            savingsbalance.setText("Savings Account balance: "+cursor.getString(6));
+        }
 
     }
 

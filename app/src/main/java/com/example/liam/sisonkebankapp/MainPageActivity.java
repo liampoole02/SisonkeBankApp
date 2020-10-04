@@ -18,6 +18,7 @@ public class MainPageActivity extends AppCompatActivity {
     Button btnlogout;
 
     DatabaseHelper db;
+    private User user;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +30,17 @@ public class MainPageActivity extends AppCompatActivity {
         btntransfer=findViewById(R.id.mainpagetransfer);
         btnlogout=findViewById(R.id.mainpagelogout);
 
+
         db=new DatabaseHelper(this);
-        Cursor cursor=db.getUserDetails();
+        user=new User();
+
+        final String emailFromIntent = getIntent().getStringExtra("EMAIL");
+
+        Cursor cursor=db.getUserDetails(emailFromIntent);
 
         while(cursor.moveToNext()){
             welcome.setText("Welcome "+cursor.getString(2));
         }
-
 
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +54,7 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainPageActivity.this, ViewAccountBalanceActivity.class);
+                intent.putExtra("EMAIL", emailFromIntent);
                 startActivity(intent);
             }
         });
@@ -57,6 +63,7 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainPageActivity.this, TransferActivity.class);
+                intent.putExtra("EMAIL", emailFromIntent);
                 startActivity(intent);
             }
         });

@@ -1,5 +1,6 @@
 package com.example.liam.sisonkebankapp;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -11,8 +12,8 @@ public class ViewAccountBalanceActivity extends AppCompatActivity {
     TextView labelholdersurname;
     TextView labelsavingsbalance;
     TextView labelcurrentbalance;
-
-
+    DatabaseHelper db;
+    private User user;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -24,6 +25,22 @@ public class ViewAccountBalanceActivity extends AppCompatActivity {
         labelholdersurname=findViewById(R.id.textviewholdersurname);
         labelcurrentbalance=findViewById(R.id.textviewholdercurrentbalance);
         labelsavingsbalance=findViewById(R.id.textviewsavingsbalance);
+
+        db=new DatabaseHelper(this);
+        user=new User();
+
+        final String emailFromIntent = getIntent().getStringExtra("EMAIL");
+
+        Cursor cursor=db.getUserDetails(emailFromIntent);
+
+        while(cursor.moveToNext()){
+            labelholdername.setText("Account Holder name: "+cursor.getString(2));
+            labelholdersurname.setText("Account Holder surname: "+cursor.getString(3));
+            labelcurrentbalance.setText("Current Account Balance: "+cursor.getString(5));
+            labelsavingsbalance.setText("Savings Account balance: "+cursor.getString(6));
+
+
+        }
 
     }
 }

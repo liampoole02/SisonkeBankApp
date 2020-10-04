@@ -23,17 +23,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists user");
     }
 
-    public boolean addUser(String email, String password, String firstname, String lastname, String mobile, double currentaccount, double savingsaccount){
+    public boolean addUser(User user){
         SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put("email", email);
-        contentValues.put("password", password);
-        contentValues.put("firstname", firstname);
-        contentValues.put("lastname", lastname);
-        contentValues.put("mobile", mobile);
-        contentValues.put("currentaccount", currentaccount);
-        contentValues.put("savingsaccount", savingsaccount);
 
+        ContentValues contentValues=new ContentValues();
+
+        contentValues.put("email", user.getUserEmail());
+        contentValues.put("password", user.getUserPassword());
+        contentValues.put("firstname", user.getUserName());
+        contentValues.put("lastname", user.getUserSurname());
+        contentValues.put("mobile", user.getUserMobile());
+        contentValues.put("currentaccount", user.getCurrentAccountBal());
+        contentValues.put("savingsaccount", user.getSavingsAccountBal());
 
         long ins=db.insert("user", null, contentValues);
 
@@ -61,9 +62,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getUserDetails(){
-        SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery("select * from user",null);
+    public Cursor getUserDetails(String email){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("Select * from user where email=?", new String[]{email});
         return cursor;
     }
 }

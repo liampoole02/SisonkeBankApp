@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     TextView loginRegisterLink;
     Button loginLogin;
 
+    private User user;
+
     DatabaseHelper db;
 
     @Override
@@ -25,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db=new DatabaseHelper(this);
-        Cursor cursor=db.getUserDetails();
-
+        user=new User();
 
         loginUsername=findViewById(R.id.edittextusername);
+
         loginPassword=findViewById(R.id.edittextpassword);
 
         loginLogin=findViewById(R.id.buttonlogin);
@@ -48,16 +50,21 @@ public class MainActivity extends AppCompatActivity {
                 String email=loginUsername.getText().toString();
                 String password=loginPassword.getText().toString();
 
-                if(email.equals("")||password.equals("")){
-                    Toast.makeText(getApplicationContext(),"Please fill in all the fields", Toast.LENGTH_LONG).show();
+                if(email.equals("")||password.equals("")) {
+
+                }else if(password.length()<5){
+                    Toast.makeText(getApplicationContext(), "Passwords has to be more than 5 characters", Toast.LENGTH_LONG).show();
                 }else {
                     Boolean check=db.emailPassword(email, password);
+
                     if(check==false) {
                         Toast.makeText(getApplicationContext(), "Incorrect email or password", Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_LONG).show();
 
                         Intent registerIntent = new Intent(MainActivity.this, MainPageActivity.class);
+                        registerIntent.putExtra("EMAIL", email);
+
                         startActivity(registerIntent);
                     }
                 }
