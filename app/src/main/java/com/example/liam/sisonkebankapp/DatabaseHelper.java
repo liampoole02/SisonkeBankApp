@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create table user(email text primary key, password text, firstname text, lastname text, mobile text, currentaccount double, savingsaccount double)");
+        db.execSQL("Create table user(email text primary key, password text, firstname text, lastname text, gender text, mobile text, currentaccount double, savingsaccount double)");
     }
 
     @Override
@@ -32,6 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("password", user.getUserPassword());
         contentValues.put("firstname", user.getUserName());
         contentValues.put("lastname", user.getUserSurname());
+        contentValues.put("gender", user.getUserGender());
         contentValues.put("mobile", user.getUserMobile());
         contentValues.put("currentaccount", user.getCurrentAccountBal());
         contentValues.put("savingsaccount", user.getSavingsAccountBal());
@@ -67,4 +68,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor=db.rawQuery("Select * from user where email=?", new String[]{email});
         return cursor;
     }
+
+    public boolean updateBalance(User user){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+
+        contentValues.put("currentaccount", user.getCurrentAccountBal());
+        contentValues.put("savingsaccount", user.getSavingsAccountBal());
+
+        db.update("user", contentValues, "email=?", new String[]{user.getUserEmail()});
+        return true;
+    }
+
 }

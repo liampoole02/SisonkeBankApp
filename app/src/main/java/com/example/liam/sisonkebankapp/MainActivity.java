@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
         loginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=loginUsername.getText().toString();
-                String password=loginPassword.getText().toString();
+                String email=loginUsername.getText().toString().trim();
+                String password=loginPassword.getText().toString().trim();
 
                 if(email.equals("")||password.equals("")) {
-
+                    Toast.makeText(getApplicationContext(), "Please fill in all required fields", Toast.LENGTH_LONG).show();
                 }else if(password.length()<5){
                     Toast.makeText(getApplicationContext(), "Passwords has to be more than 5 characters", Toast.LENGTH_LONG).show();
                 }else {

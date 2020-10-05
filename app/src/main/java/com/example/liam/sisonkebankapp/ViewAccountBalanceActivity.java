@@ -36,8 +36,8 @@ public class ViewAccountBalanceActivity extends AppCompatActivity {
         while(cursor.moveToNext()){
             labelholdername.setText("Account Holder name: "+cursor.getString(2));
             labelholdersurname.setText("Account Holder surname: "+cursor.getString(3));
-            labelcurrentbalance.setText("Current Account Balance: "+cursor.getString(5));
-            labelsavingsbalance.setText("Savings Account balance: "+cursor.getString(6));
+            labelcurrentbalance.setText("Current Account Balance: "+cursor.getString(6));
+            labelsavingsbalance.setText("Savings Account balance: "+cursor.getString(7));
 
 
         }

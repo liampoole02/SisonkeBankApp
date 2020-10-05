@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText registeremail;
     EditText registerpassword;
     EditText registermobile;
+
+    RadioGroup radioGroupGender;
 
     Button registerbutton;
     DatabaseHelper databaseHelper;
@@ -47,7 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         registerbutton=findViewById(R.id.registerbuttoncreate);
 
-          currentaccount=5000;
+        radioGroupGender = (RadioGroup) findViewById(R.id.genderradio);
+
+        currentaccount=5000;
           savingsaccount=2000;
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
@@ -59,9 +64,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String surname=registerlastname.getText().toString().trim();
                 String mobile=registermobile.getText().toString().trim();
 
+                final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
+
                 if(email.equals("")||password.equals("")||name.equals("")||surname.equals("")||mobile.equals("")){
                     Toast.makeText(getApplicationContext(),"Please fill in all the fields", Toast.LENGTH_LONG).show();
-                }if(password.length()<5){
+                }else if(password.length()<5){
                     Toast.makeText(getApplicationContext(),"Password has to be longer than 5 characters", Toast.LENGTH_LONG).show();
                 }
 
@@ -73,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                             user.setUserName(name);
                             user.setUserSurname(surname);
                             user.setUserMobile(mobile);
+                            user.setUserGender(gender);
                             user.setCurrentAccountBal(currentaccount);
                             user.setSavingsAccountBal(savingsaccount);
 
