@@ -36,6 +36,8 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfer);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         transferlabel=findViewById(R.id.textviewtransferlabel);
         currentbalance=findViewById(R.id.textviewcurrentbalancetransfer);
         savingsbalance=findViewById(R.id.textviewsavingsbalancetransfer);
@@ -75,7 +77,7 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
         buttontransfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
 
                 if (transferamount.getText().toString().trim().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter a transfer amount", Toast.LENGTH_LONG).show();

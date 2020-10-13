@@ -20,6 +20,8 @@ public class ViewAccountBalanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewaccountbalance);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         labelviewbalance=findViewById(R.id.textviewview);
         labelholdername=findViewById(R.id.textviewholdername);
         labelholdersurname=findViewById(R.id.textviewholdersurname);

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,7 @@ public class MainPageActivity extends AppCompatActivity {
     Button btnviewbalance;
     Button btntransfer;
     Button btnlogout;
+    Toolbar toolbar;
 
     DatabaseHelper db;
     private User user;
@@ -29,7 +31,6 @@ public class MainPageActivity extends AppCompatActivity {
         btnviewbalance=findViewById(R.id.mainpageviewbalance);
         btntransfer=findViewById(R.id.mainpagetransfer);
         btnlogout=findViewById(R.id.mainpagelogout);
-
 
         db=new DatabaseHelper(this);
         user=new User();

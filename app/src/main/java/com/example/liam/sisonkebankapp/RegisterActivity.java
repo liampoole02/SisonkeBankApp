@@ -50,10 +50,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         registerbutton=findViewById(R.id.registerbuttoncreate);
 
-        radioGroupGender = (RadioGroup) findViewById(R.id.genderradio);
+        radioGroupGender = findViewById(R.id.genderradio);
 
         currentaccount=5000;
-          savingsaccount=2000;
+        savingsaccount=2000;
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,16 +64,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String surname=registerlastname.getText().toString().trim();
                 String mobile=registermobile.getText().toString().trim();
 
-                final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
-
                 if(email.equals("")||password.equals("")||name.equals("")||surname.equals("")||mobile.equals("")){
                     Toast.makeText(getApplicationContext(),"Please fill in all the fields", Toast.LENGTH_LONG).show();
                 }else if(password.length()<5){
                     Toast.makeText(getApplicationContext(),"Password has to be longer than 5 characters", Toast.LENGTH_LONG).show();
+                }else if(!isValid(email)){
+                    Toast.makeText(getApplicationContext(),"Please enter an email in the proper format", Toast.LENGTH_LONG).show();
+                }else if (radioGroupGender.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(getApplicationContext(),"Please select a gender", Toast.LENGTH_LONG).show();
                 }
 
                 else{
-                        Boolean checkEmail=databaseHelper.checkEmail(email);
+                    final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
+
+                    Boolean checkEmail=databaseHelper.checkEmail(email);
                         if(checkEmail==true){
                             user.setUserEmail(email);
                             user.setUserPassword(password);
@@ -98,6 +102,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+    static boolean isValid(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
     }
 
     public void onRadioButtonClicked(View view) {

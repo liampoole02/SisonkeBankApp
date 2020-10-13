@@ -8,19 +8,30 @@
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_marginTop="150dp"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"
+        android:id="@+id/textviewwelcome"
+        android:text="Welcome to the Sisonke Bank App"
+        />
+
     <EditText
         android:layout_width="340dp"
         android:layout_height="60dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/edittextusername"
-        android:hint="username"/>
+        android:hint="Username"/>
 
     <EditText
         android:layout_width="340dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:id="@+id/edittextpassword"
-        android:hint="password"/>
+        android:hint="Password"/>
     
     <Button
         android:layout_width="340dp"

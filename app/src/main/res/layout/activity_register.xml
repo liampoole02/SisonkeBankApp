@@ -12,6 +12,9 @@
         android:layout_marginTop="0dp"
         android:layout_width="340dp"
         android:layout_height="60dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"
         android:id="@+id/registertextviewlabel"
         android:text="Enter your details below to register"
         />
@@ -51,35 +54,36 @@
         android:hint="Mobile"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="342dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
+            android:layout_width="79dp"
+            android:layout_height="30dp"
             android:layout_marginTop="0dp"
-        android:layout_width="79dp"
-        android:layout_height="30dp"
-        android:text="Gender"
-        />
+            android:text="Gender" />
 
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/genderradio"
-        >
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/genderradio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <RadioButton android:id="@+id/radio_pirates"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Male"
-            android:onClick="onRadioButtonClicked"/>
-        <RadioButton android:id="@+id/radio_ninjas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female"
-            android:onClick="onRadioButtonClicked"/>
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/radio_pirates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/radio_ninjas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="Female" />
+        </RadioGroup>
     </LinearLayout>
 
     <Button

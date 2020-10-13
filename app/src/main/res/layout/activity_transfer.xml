@@ -7,12 +7,13 @@
     tools:context=".TransferActivity">
 
     <TextView
-        android:layout_marginStart="50dp"
         android:id="@+id/textviewtransferlabel"
         android:layout_width="wrap_content"
         android:layout_marginBottom="50dp"
         android:layout_height="40dp"
-        android:textSize="30dp"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="center"
         android:layout_marginTop="10dp"
         android:text="Transfer to/from accounts"
         />
@@ -22,6 +23,7 @@
         android:id="@+id/textviewcurrentbalancetransfer"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:text="Current Account Balance: R" />
 
@@ -29,6 +31,7 @@
     <TextView
         android:id="@+id/textviewsavingsbalancetransfer"
         android:layout_width="wrap_content"
+        android:textSize="20sp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:text="Savings Account Balance: R" />
@@ -36,19 +39,22 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:orientation="horizontal">
 
     <TextView
         android:id="@+id/textviewentertransferamount"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:text="Enter transfer amount: R" />
 
         <EditText
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="9dp"
+            android:textSize="20sp"
             android:id="@+id/registeredittextlastname"
             android:hint=""/>
 
@@ -63,6 +69,7 @@
             android:id="@+id/textviewtransferamount"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:textSize="20sp"
             android:layout_marginTop="10dp"
             android:text="Transfer from: " />
 
