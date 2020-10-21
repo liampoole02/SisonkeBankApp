@@ -65,9 +65,9 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
         final Cursor cursor=db.getUserDetails(MainPageActivity.email);
 
         while(cursor.moveToNext()){
-            currentbalance.setText("Current Account Balance: R"+cursor.getString(6));
+            currentbalance.setText("Current Account Balance: R"+Double.parseDouble(cursor.getString(6)));
             currentAccountBalance=Double.parseDouble(cursor.getString(6));
-            savingsbalance.setText("Savings Account balance: R"+cursor.getString(7));
+            savingsbalance.setText("Savings Account balance: R"+Double.parseDouble(cursor.getString(7)));
             savingsAccountBalance=Double.parseDouble(cursor.getString(7));
 
         }
@@ -80,7 +80,7 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
                 } else {
 
                     if (spinner.getSelectedItem().toString().trim().equals("Current to savings")) {
-                        if (Integer.parseInt(transferamount.getText().toString().trim()) > currentAccountBalance) {
+                        if (Double.parseDouble(transferamount.getText().toString().trim()) > currentAccountBalance) {
                             Toast.makeText(getApplicationContext(), "You cannot transfer more than what you have, please choose a smaller amount", Toast.LENGTH_LONG).show();
 
                         } else {
@@ -96,7 +96,7 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
                         }
 
                     } else if(spinner.getSelectedItem().toString().trim().equals("Savings to current")) {
-                        if (Integer.parseInt(transferamount.getText().toString().trim()) > savingsAccountBalance) {
+                        if (Double.parseDouble(transferamount.getText().toString().trim()) > savingsAccountBalance) {
                             Toast.makeText(getApplicationContext(), "You cannot transfer more than what you have, please choose a smaller amount", Toast.LENGTH_LONG).show();
                         } else {
                             user.setSavingsAccountBal(savingsAccountBalance-Double.parseDouble(transferamount.getText().toString().trim()));
