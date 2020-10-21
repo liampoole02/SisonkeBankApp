@@ -16,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainPageActivity" />
-        <activity android:name=".ViewAccountBalanceActivity" />
-        <activity android:name=".TransferActivity" />
+        <activity android:name=".RegisterActivity"  />
+        <activity android:name=".MainPageActivity"
+            android:launchMode="singleTop"/>
+        <activity android:name=".ViewAccountBalanceActivity" android:parentActivityName=".MainPageActivity" />
+        <activity android:name=".TransferActivity" android:parentActivityName=".MainPageActivity"/>
 
     </application>
 

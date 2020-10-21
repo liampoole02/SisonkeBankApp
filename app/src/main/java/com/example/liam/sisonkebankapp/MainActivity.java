@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         loginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=loginUsername.getText().toString().trim();
+                String email=loginUsername.getText().toString().toLowerCase().trim();
                 String password=loginPassword.getText().toString().trim();
 
                 if(email.equals("")||password.equals("")) {
@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent registerIntent = new Intent(MainActivity.this, MainPageActivity.class);
                         registerIntent.putExtra("EMAIL", email);
+
+                        loginUsername.setText("");
+                        loginPassword.setText("");
 
                         startActivity(registerIntent);
                     }

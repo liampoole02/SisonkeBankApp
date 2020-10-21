@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +20,8 @@ public class MainPageActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     DatabaseHelper db;
+     static String email;
     private User user;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +35,9 @@ public class MainPageActivity extends AppCompatActivity {
         db=new DatabaseHelper(this);
         user=new User();
 
-        final String emailFromIntent = getIntent().getStringExtra("EMAIL");
+         email = getIntent().getStringExtra("EMAIL");
 
-        Cursor cursor=db.getUserDetails(emailFromIntent);
+        Cursor cursor=db.getUserDetails(email);
 
         while(cursor.moveToNext()){
             welcome.setText("Welcome "+cursor.getString(2));
@@ -48,6 +48,9 @@ public class MainPageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(MainPageActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
+                Toast.makeText(getApplicationContext(),"You have been logged out", Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -55,7 +58,6 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainPageActivity.this, ViewAccountBalanceActivity.class);
-                intent.putExtra("EMAIL", emailFromIntent);
                 startActivity(intent);
             }
         });
@@ -64,7 +66,7 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainPageActivity.this, TransferActivity.class);
-                intent.putExtra("EMAIL", emailFromIntent);
+
                 startActivity(intent);
             }
         });

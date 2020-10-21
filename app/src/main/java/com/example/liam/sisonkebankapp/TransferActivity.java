@@ -62,14 +62,12 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
         db=new DatabaseHelper(this);
         user=new User();
 
-        final String emailFromIntent = getIntent().getStringExtra("EMAIL");
-
-        final Cursor cursor=db.getUserDetails(emailFromIntent);
+        final Cursor cursor=db.getUserDetails(MainPageActivity.email);
 
         while(cursor.moveToNext()){
-            currentbalance.setText("Current Account Balance: "+cursor.getString(6));
+            currentbalance.setText("Current Account Balance: R"+cursor.getString(6));
             currentAccountBalance=Double.parseDouble(cursor.getString(6));
-            savingsbalance.setText("Savings Account balance: "+cursor.getString(7));
+            savingsbalance.setText("Savings Account balance: R"+cursor.getString(7));
             savingsAccountBalance=Double.parseDouble(cursor.getString(7));
 
         }
@@ -77,8 +75,6 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
         buttontransfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
-
                 if (transferamount.getText().toString().trim().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter a transfer amount", Toast.LENGTH_LONG).show();
                 } else {
@@ -86,16 +82,16 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
                     if (spinner.getSelectedItem().toString().trim().equals("Current to savings")) {
                         if (Integer.parseInt(transferamount.getText().toString().trim()) > currentAccountBalance) {
                             Toast.makeText(getApplicationContext(), "You cannot transfer more than what you have, please choose a smaller amount", Toast.LENGTH_LONG).show();
+
                         } else {
                             user.setCurrentAccountBal(currentAccountBalance-Double.parseDouble(transferamount.getText().toString().trim()));
                             user.setSavingsAccountBal(savingsAccountBalance+Double.parseDouble(transferamount.getText().toString().trim()));
-                            user.setUserEmail(emailFromIntent);
+                            user.setUserEmail(MainPageActivity.email);
 
                             db.updateBalance(user);
-                            Toast.makeText(getApplicationContext(), "Your transfer has compeleted successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Your transfer has completed successfully", Toast.LENGTH_LONG).show();
 
                             Intent registerIntent = new Intent(TransferActivity.this, TransferActivity.class);
-                            registerIntent.putExtra("EMAIL", emailFromIntent);
                             startActivity(registerIntent);
                         }
 
@@ -105,15 +101,15 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
                         } else {
                             user.setSavingsAccountBal(savingsAccountBalance-Double.parseDouble(transferamount.getText().toString().trim()));
                             user.setCurrentAccountBal(currentAccountBalance+Double.parseDouble(transferamount.getText().toString().trim()));
-                            user.setUserEmail(emailFromIntent);
+                            user.setUserEmail(MainPageActivity.email);
 
                             db.updateBalance(user);
                             Toast.makeText(getApplicationContext(), "Your transfer has completed successfully", Toast.LENGTH_LONG).show();
 
                             Intent registerIntent = new Intent(TransferActivity.this, TransferActivity.class);
-                            registerIntent.putExtra("EMAIL", emailFromIntent);
 
                             startActivity(registerIntent);
+
                         }
                     }
                 }

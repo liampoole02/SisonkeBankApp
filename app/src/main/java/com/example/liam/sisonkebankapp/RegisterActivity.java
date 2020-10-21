@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=registeremail.getText().toString().trim();
+                String email=registeremail.getText().toString().toLowerCase().trim();
                 String password=registerpassword.getText().toString().trim();
                 String name=registerfirstname.getText().toString().trim();
                 String surname=registerlastname.getText().toString().trim();
@@ -92,7 +92,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"You have been registered successfully", Toast.LENGTH_LONG).show();
                                 Intent registerIntent=new Intent(RegisterActivity.this, MainActivity.class);
-                                startActivity(registerIntent);
+
+                            startActivity(registerIntent);
 
                         }else{
                             Toast.makeText(getApplicationContext(),"This email already exists", Toast.LENGTH_LONG).show();
