@@ -11,18 +11,12 @@ class User {
     private Double currentAccountBal;
     private Double savingsAccountBal;
 
-//
-//    public User(String userName, String userEmail, String userPassword, String userMobile, String userGender, String userSurname, Double currentAccountBal, Double savingsAccountBal) {
-//        this.userName = userName;
-//        this.userEmail = userEmail;
-//        this.userPassword = userPassword;
-//        this.userMobile = userMobile;
-//        this.userGender = userGender;
-//        this.userSurname = userSurname;
-//        this.currentAccountBal = currentAccountBal;
-//        this.savingsAccountBal = savingsAccountBal;
-//    }
+//Constructor
+    public User() {
 
+    }
+
+    //Getter and Setters
     public String getUserName() {
         return userName;
     }

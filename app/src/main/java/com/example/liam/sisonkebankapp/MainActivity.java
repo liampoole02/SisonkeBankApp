@@ -50,12 +50,16 @@ public class MainActivity extends AppCompatActivity {
                 String email=loginUsername.getText().toString().toLowerCase().trim();
                 String password=loginPassword.getText().toString().trim();
 
+                //Validates fields
                 if(email.equals("")||password.equals("")) {
                     Toast.makeText(getApplicationContext(), "Please fill in all required fields", Toast.LENGTH_LONG).show();
                 }else if(password.length()<5){
                     Toast.makeText(getApplicationContext(), "Passwords has to be more than 5 characters", Toast.LENGTH_LONG).show();
                 }else {
-                    Boolean check=db.emailPassword(email, password);
+                    //When fields are filled in properly
+
+
+                    Boolean check=db.emailPassword(email, password); //Validates login details
 
                     if(check==false) {
                         Toast.makeText(getApplicationContext(), "Incorrect email or password", Toast.LENGTH_LONG).show();

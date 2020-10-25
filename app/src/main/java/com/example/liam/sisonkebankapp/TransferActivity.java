@@ -60,17 +60,15 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
         buttontransfer=findViewById(R.id.buttontransfer);
 
         db=new DatabaseHelper(this);
-        user=new User();
 
-        final Cursor cursor=db.getUserDetails(MainPageActivity.email);
+        //Gets user details and displays it
+        user=db.getUserDetails(MainPageActivity.email);
 
-        while(cursor.moveToNext()){
-            currentbalance.setText("Current Account Balance: R"+Double.parseDouble(cursor.getString(6)));
-            currentAccountBalance=Double.parseDouble(cursor.getString(6));
-            savingsbalance.setText("Savings Account balance: R"+Double.parseDouble(cursor.getString(7)));
-            savingsAccountBalance=Double.parseDouble(cursor.getString(7));
+            currentbalance.setText("Current Account Balance: R"+user.getCurrentAccountBal());
+            currentAccountBalance=user.getCurrentAccountBal();
+            savingsbalance.setText("Savings Account balance: R"+user.getSavingsAccountBal());
+            savingsAccountBalance=user.getSavingsAccountBal();
 
-        }
 
         buttontransfer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,10 +78,12 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
                 } else {
 
                     if (spinner.getSelectedItem().toString().trim().equals("Current to savings")) {
+                        //Check if the user has enough money to do the transfer
                         if (Double.parseDouble(transferamount.getText().toString().trim()) > currentAccountBalance) {
                             Toast.makeText(getApplicationContext(), "You cannot transfer more than what you have, please choose a smaller amount", Toast.LENGTH_LONG).show();
 
                         } else {
+                            //if the user has enough funds to transfer then the transfer is made and the balances are updated accordingly
                             user.setCurrentAccountBal(currentAccountBalance-Double.parseDouble(transferamount.getText().toString().trim()));
                             user.setSavingsAccountBal(savingsAccountBalance+Double.parseDouble(transferamount.getText().toString().trim()));
                             user.setUserEmail(MainPageActivity.email);
@@ -93,12 +93,17 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
 
                             Intent registerIntent = new Intent(TransferActivity.this, TransferActivity.class);
                             startActivity(registerIntent);
+                            finish();
                         }
 
                     } else if(spinner.getSelectedItem().toString().trim().equals("Savings to current")) {
+                        //Check if the user has enough money to do the transfer
+
                         if (Double.parseDouble(transferamount.getText().toString().trim()) > savingsAccountBalance) {
                             Toast.makeText(getApplicationContext(), "You cannot transfer more than what you have, please choose a smaller amount", Toast.LENGTH_LONG).show();
                         } else {
+                            //if the user has enough funds to transfer then the transfer is made and the balances are updated accordingly
+
                             user.setSavingsAccountBal(savingsAccountBalance-Double.parseDouble(transferamount.getText().toString().trim()));
                             user.setCurrentAccountBal(currentAccountBalance+Double.parseDouble(transferamount.getText().toString().trim()));
                             user.setUserEmail(MainPageActivity.email);
@@ -109,6 +114,8 @@ public class TransferActivity  extends AppCompatActivity implements AdapterView.
                             Intent registerIntent = new Intent(TransferActivity.this, TransferActivity.class);
 
                             startActivity(registerIntent);
+                            finish();
+
 
                         }
                     }

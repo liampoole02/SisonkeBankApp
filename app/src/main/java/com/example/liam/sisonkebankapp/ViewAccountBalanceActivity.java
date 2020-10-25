@@ -31,16 +31,15 @@ public class ViewAccountBalanceActivity extends AppCompatActivity {
         db=new DatabaseHelper(this);
         user=new User();
 
-//        final String emailFromIntent = getIntent().getStringExtra("EMAIL");
 
-        Cursor cursor=db.getUserDetails(MainPageActivity.email);
+        User user=db.getUserDetails(MainPageActivity.email);
 
-        while(cursor.moveToNext()){
-            labelholdername.setText("Account Holder name: "+cursor.getString(2));
-            labelholdersurname.setText("Account Holder surname: "+cursor.getString(3));
-            labelcurrentbalance.setText("Current Account Balance: R"+Double.parseDouble(cursor.getString(6)));
-            labelsavingsbalance.setText("Savings Account balance: R"+Double.parseDouble(cursor.getString(7)));
-        }
+        //Displays information in the fields
+            labelholdername.setText("Account Holder name: "+user.getUserName());
+            labelholdersurname.setText("Account Holder surname: "+user.getUserSurname());
+            labelcurrentbalance.setText("Current Account Balance: R"+user.getCurrentAccountBal());
+            labelsavingsbalance.setText("Savings Account balance: R"+user.getSavingsAccountBal());
+
 
     }
 }

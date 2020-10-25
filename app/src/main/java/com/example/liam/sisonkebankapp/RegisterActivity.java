@@ -52,18 +52,21 @@ public class RegisterActivity extends AppCompatActivity {
 
         radioGroupGender = findViewById(R.id.genderradio);
 
+        //Initializing balances
         currentaccount=5000;
         savingsaccount=2000;
 
         registerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Gets data from fields
                 String email=registeremail.getText().toString().toLowerCase().trim();
                 String password=registerpassword.getText().toString().trim();
                 String name=registerfirstname.getText().toString().trim();
                 String surname=registerlastname.getText().toString().trim();
                 String mobile=registermobile.getText().toString().trim();
 
+                //Field validation
                 if(email.equals("")||password.equals("")||name.equals("")||surname.equals("")||mobile.equals("")){
                     Toast.makeText(getApplicationContext(),"Please fill in all the fields", Toast.LENGTH_LONG).show();
                 }else if(password.length()<5){
@@ -77,8 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
                 else{
                     final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
 
-                    Boolean checkEmail=databaseHelper.checkEmail(email);
+                    Boolean checkEmail=databaseHelper.checkEmail(email);//Checks if email is available
                         if(checkEmail==true){
+                            //Sets user data with setters and is then user in DatabaseHelper class
                             user.setUserEmail(email);
                             user.setUserPassword(password);
                             user.setUserName(name);
@@ -88,12 +92,14 @@ public class RegisterActivity extends AppCompatActivity {
                             user.setCurrentAccountBal(currentaccount);
                             user.setSavingsAccountBal(savingsaccount);
 
+                            //Adds new user to database with user object
                             databaseHelper.addUser(user);
 
                                 Toast.makeText(getApplicationContext(),"You have been registered successfully", Toast.LENGTH_LONG).show();
                                 Intent registerIntent=new Intent(RegisterActivity.this, MainActivity.class);
 
                             startActivity(registerIntent);
+                            finish();
 
                         }else{
                             Toast.makeText(getApplicationContext(),"This email already exists", Toast.LENGTH_LONG).show();
@@ -104,6 +110,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
+
+    //Valiates the format of the email
     static boolean isValid(String email) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
@@ -117,11 +125,9 @@ public class RegisterActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.radio_pirates:
                 if (checked)
-                    // Pirates are the best
                     break;
             case R.id.radio_ninjas:
                 if (checked)
-                    // Ninjas rule
                     break;
         }
     }

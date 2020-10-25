@@ -33,17 +33,14 @@ public class MainPageActivity extends AppCompatActivity {
         btnlogout=findViewById(R.id.mainpagelogout);
 
         db=new DatabaseHelper(this);
-        user=new User();
 
-         email = getIntent().getStringExtra("EMAIL");
+        email = getIntent().getStringExtra("EMAIL");
 
-        Cursor cursor=db.getUserDetails(email);
+        user=db.getUserDetails(email);
 
-        while(cursor.moveToNext()){
-            welcome.setText("Welcome "+cursor.getString(2));
-        }
+        welcome.setText("Welcome "+user.getUserName());
 
-        btnlogout.setOnClickListener(new View.OnClickListener() {
+        btnlogout.setOnClickListener(new View.OnClickListener() {//Logs user out
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainPageActivity.this, MainActivity.class);
@@ -54,7 +51,7 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        btnviewbalance.setOnClickListener(new View.OnClickListener() {
+        btnviewbalance.setOnClickListener(new View.OnClickListener() {//Takes user to ViewBalanceActivity
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainPageActivity.this, ViewAccountBalanceActivity.class);
@@ -62,7 +59,7 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        btntransfer.setOnClickListener(new View.OnClickListener() {
+        btntransfer.setOnClickListener(new View.OnClickListener() {//Takes user to Transfer activity
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainPageActivity.this, TransferActivity.class);

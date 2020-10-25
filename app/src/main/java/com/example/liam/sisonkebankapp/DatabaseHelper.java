@@ -15,6 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //Query to create user table with its columns
         db.execSQL("Create table user(email text primary key, password text, firstname text, lastname text, gender text, mobile text, currentaccount double, savingsaccount double)");
     }
 
@@ -28,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues contentValues=new ContentValues();
 
+        //Get variables set from login page with getters and insert to database
         contentValues.put("email", user.getUserEmail());
         contentValues.put("password", user.getUserPassword());
         contentValues.put("firstname", user.getUserName());
@@ -43,6 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    //Check if email exists or not
      public boolean checkEmail(String email){
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery("Select * from user where email=?",new String[]{email});
@@ -53,6 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
      }
 
+     //Validates login
      public boolean emailPassword(String email, String password){
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery("Select * from user where email=? and password=?", new String[]{email,password});
@@ -63,11 +67,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getUserDetails(String email){
+
+
+    public User getUserDetails(String email){
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery("Select * from user where email=?", new String[]{email});
-        return cursor;
+User user=new User();
+if(cursor!=null && cursor.moveToNext()){
+    user.setUserName(cursor.getString(2));
+    user.setUserSurname(cursor.getString(3));
+    user.setCurrentAccountBal(Double.parseDouble(cursor.getString(6)));
+    user.setSavingsAccountBal(Double.parseDouble(cursor.getString(7)));
+}
+cursor.close();
+db.close();
+return user;
     }
+
 
     public boolean updateBalance(User user){
         SQLiteDatabase db=this.getWritableDatabase();
